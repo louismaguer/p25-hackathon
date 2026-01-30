@@ -181,6 +181,11 @@ class Grid:
             return 1
         return 0
     
+    def compte_loups(self):
+        pass
+    def compte_mouton(self):
+        pass
+    
 # Fonction qui génère une matrice remplie d'herbe à la densité désirée, de manière aléatoire
 def herbe_aleatoire(n):
     case=[(line,col) for col in range(n) for line in range(n)]
