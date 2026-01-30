@@ -26,7 +26,7 @@ GRASS_REGROWTH_TIME = 7
 MAX_TURNS = 500 # Nombre maximum de tours
 
 class Sheep :
-    def _init_(self, position_x: float, position_y: float, age: int, energie:int):
+    def __init__(self, position_x: float, position_y: float, age: int, energie:int):
         self.position_x = position_x
         self.position_y = position_y
         self.age = age
@@ -62,7 +62,7 @@ class Wolf :
         return self.energie>=WOLF_REPRODUCTION_THRESHOLD
 
 class Grass :
-    def _init_(self, position_x: float, position_y: float, temps_repousse: int=0):
+    def __init__(self, position_x: float, position_y: float, temps_repousse: int=0):
         self.position_x = position_x
         self.position_y = position_y
         self.temps_repousse = temps_repousse # = 0 : l'herbe est vivante / = d (> 0) : l'herbe se régénère dans d cycles
