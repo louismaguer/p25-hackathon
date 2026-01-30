@@ -27,13 +27,11 @@ class Grid:
         pass
 
     def update_grass(self, i, j):
-<<<<<<< HEAD
         for p in range(len(self.mat)):
             for q in range(len(self.mat)) :
                 if self.mat[pq] == 0 :
                     if np.random.uniform() <= en.GRASS_GROWTH_PROBABILITY :
                         self.mat[p,q] = en.Grass()
-=======
         pass
 
     def die(self):
@@ -49,4 +47,3 @@ class Grid:
         pass
 
 
->>>>>>> 62514d317a99c89f35c082c0057cf14cdedf4276
