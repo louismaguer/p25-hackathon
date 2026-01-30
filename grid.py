@@ -141,8 +141,6 @@ class Grid:
             return 1
         return 0
 
-        
-    
 
 
 def update(g):
