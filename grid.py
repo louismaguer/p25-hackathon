@@ -60,8 +60,9 @@ class Grid:
                 self.mat[i][j]=0
                 self.mat[nx][ny]=sheep_
                 self.mat[nx][ny].turn = self.tour
+                self.grass[nx][ny].temps_repousse=en.GRASS_REGROWTH_TIME
                 sheep_.move(nx,ny)
-                sheep_.energie += en.WOLF_ENERGY_FROM_SHEEP
+                sheep_.energie += en.SHEEP_ENERGY_FROM_GRASS
             else: 
                 Vide=[k for k in adj if self.mat[k[0]][k[1]]==0]
                 if Vide:
@@ -79,14 +80,16 @@ class Grid:
         n = len(self.mat)
         for i in range(n):
             for j in range(n):
-                Grid.update_wolf_one_cell(self,i,j)
+                if isinstance(self.mat[i][j], en.Wolf):
+                    Grid.update_wolf_one_cell(self,i,j)
 
     # Fonction qui met à jour tous les mouton en faisant appel à la fonction update_sheep_one_cell
     def update_sheep(self):
         n = len(self.mat)
         for i in range(n):
             for j in range(n):
-                Grid.update_sheep_one_cell(self, i,j)
+                if isinstance(self.mat[i][j], en.Sheep):
+                    Grid.update_sheep_one_cell(self, i,j)
         
     # Fonction qui met à jour l'état de l'herbe en la regénérant et ajoute aléatoirement de l'herbe
     def update_grass(self):
@@ -214,7 +217,13 @@ def update(g):
     return Grid.end_simulation(g)
 
 def init_grid(n):
-    pass
+    g = Grid(n)
+    mat_an = animaux_aleatoire(n)
+    mat_he = herbe_aleatoire(n)
+    g.mat = mat_an
+    g.grass = mat_he
+    return g
+
 
 
 
