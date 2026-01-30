@@ -63,4 +63,4 @@ class Grass :
     def _init_(self, position_x: float, position_y: float, temps_repousse: int=0):
         self.position_x = position_x
         self.position_y = position_y
-        self.temps_repousse= temps_repousse
+        self.temps_repousse = temps_repousse # = 0 : l'herbe est vivante / = d (> 0) : l'herbe se régénère dans d cycles
