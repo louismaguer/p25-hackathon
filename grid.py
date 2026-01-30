@@ -187,7 +187,7 @@ class Grid:
         L = 0
         for r in range(n):
             for c in range(n):
-                if isinstance(g.mat[r][c], en.Wolf) :
+                if isinstance(self.mat[r][c], en.Wolf) :
                     L += 1
         return L
 
@@ -197,7 +197,7 @@ class Grid:
         M = 0
         for r in range(n):
             for c in range(n):
-                if isinstance(g.mat[r][c], en.Sheep) :
+                if isinstance(self.mat[r][c], en.Sheep) :
                     M += 1
         return M
 
