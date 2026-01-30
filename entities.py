@@ -26,7 +26,7 @@ GRASS_REGROWTH_TIME = 7
 MAX_TURNS = 500 # Nombre maximum de tours
 
 class Sheep :
-    def __init__(self, position_x: float, position_y: float, age: int, energie:int):
+    def __init__(self, position_x: int, position_y: int, age: int, energie:int):
         self.position_x = position_x
         self.position_y = position_y
         self.age = age
@@ -39,12 +39,12 @@ class Sheep :
     def can_reprod(self):
         return self.energie >= SHEEP_REPRODUCTION_THRESHOLD
     
-    def move(self, i: float, j: float):
+    def move(self, i: int, j: int):
         self.position_x = i
         self.position_y = j
 
 class Wolf :
-    def __init__ (self, position_x: float,position_y:float,age:int,energie:int):
+    def __init__ (self, position_x: int,position_y:int,age:int,energie:int):
         self.position_x=position_x
         self.position_y=position_y
         self.age=age
@@ -54,15 +54,15 @@ class Wolf :
     def is_dead(self):
         return self.energie<=0 or self.age>=WOLF_MAX_AGE
     
-    def move(self, i: float, j: float):
+    def move(self, i: int, j: int):
         self.position_x = i
         self.position_y = j   
 
-    def can_reprod(self,grid):
+    def can_reprod(self):
         return self.energie>=WOLF_REPRODUCTION_THRESHOLD
 
 class Grass :
-    def __init__(self, position_x: float, position_y: float, temps_repousse: int=0):
+    def __init__(self, position_x: int, position_y: int, temps_repousse: int=0):
         self.position_x = position_x
         self.position_y = position_y
         self.temps_repousse = temps_repousse # = 0 : l'herbe est vivante / = d (> 0) : l'herbe se régénère dans d cycles

@@ -45,6 +45,7 @@ class Grid:
                     self.mat[nx][ny].turn = self.tour
                     wolf_.move(nx,ny)
             wolf_.energie -= en.WOLF_ENERGY_LOSS_PER_TURN
+            wolf_.turn +=1
 
     def update_sheep_one_cell(self, i, j):
         sheep_=self.mat[i][j]
@@ -70,6 +71,7 @@ class Grid:
                             self.mat[nx][ny].turn = self.tour
                             sheep_.move(nx,ny)
             sheep_.energie -=en.SHEEP_ENERGY_LOSS_PER_TURN
+            sheep_.turn +=1
 
     def update_wolf(self):
         n = len(self.mat)
@@ -100,7 +102,7 @@ class Grid:
         for i in range(len(self.mat)):
             for j in range(len(self.mat)) :
                 if isinstance(self.mat[i][j], (en.Sheep, en.Wolf)) :
-                    if self.mat[i][j].is_dead(self) :
+                    if self.mat[i][j].is_dead() :
                         self.mat[i][j] = 0
 
     def reproduct_sheep(self):
