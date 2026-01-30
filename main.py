@@ -37,6 +37,7 @@ def main_0(n):
     herbs = []
     loups = []
     mouton = []
+    herbe = []
     g = gr.init_grid(n)
     animals.append(copy.deepcopy(g.mat))
     herbs.append(copy.deepcopy(g.grass))
@@ -53,7 +54,7 @@ def main_0(n):
     fig, ax = plt.subplots()
     im = ax.imshow(matrices[i], cmap=palette)
     ax.axis("off")
-    ax.set_title(f"Tour numéro {i + 1} \n Moutons : {mouton[i]}  Loups : {loups[i]}" )
+    ax.set_title(f"Tour numéro {i + 1} \n Moutons : {mouton[i]}  Loups : {loups[i]}  Herbe : {herbe[i]}" )
 
     def on_key(event):
         print("KEY:", event.key)
