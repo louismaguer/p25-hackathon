@@ -47,7 +47,7 @@ class Grid:
     def update_sheep_one_cell(self, i, j):
         sheep_=self.mat[i][j]
         if self.tour > sheep_.turn:
-            adj=self.list_adj(self,i,j)
+            adj=self.list_adj(i,j)
             grass_coos=[k for k in adj if isinstance(self.grass[k[0]][k[1]],en.Grass)]
             if grass_coos:
                 nx,ny=random.choice(grass_coos)
@@ -78,7 +78,7 @@ class Grid:
         n = len(self.mat)
         for i in range(n):
             for j in range(n):
-                Grid.update_wolf_one_cell(self, i,j)
+                Grid.update_sheep_one_cell(self, i,j)
         
 
     def update_grass(self):
@@ -95,7 +95,7 @@ class Grid:
         for i in range(len(self.mat)):
             for j in range(len(self.mat)) :
                 if isinstance(self.mat[i][j], (en.Sheep, en.Wolf)) :
-                    if self.mat[i][j].isdead(self) :
+                    if self.mat[i][j].is_dead(self) :
                         self.mat[i][j] = 0
 
     def reproduct_sheep(self):
@@ -111,7 +111,7 @@ class Grid:
                 Vide=[v for v in A if self.mat[v[0]][v[1]]==0]
                 if Vide:
                     nx,ny=random.choice(Vide)
-                    self.mat[nx][ny]=en.Wolf(nx,ny,0,en.SHEEP_INITIAL_ENERGY)
+                    self.mat[nx][ny]=en.Sheep(nx,ny,0,en.SHEEP_INITIAL_ENERGY)
                     parents.energie -= en.REPRODUCTION_ENERGY_COST
 
     def reproduct_wolf(self):
