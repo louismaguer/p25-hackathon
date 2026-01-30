@@ -10,6 +10,7 @@ class Grid:
         self.grass = [[0 for i in range(n)] for i in range(n)]
         self.tour = 0
 
+    # Fonction qui liste les cases adjacentes
     def list_adj(self, i, j):
         ans = []
         n = len(self.mat)
@@ -23,7 +24,8 @@ class Grid:
             ans.append((i, j + 1))
         return ans
     
-
+    # Fonction qui met à jour la position du loup, soit en le déplaçant soit en le faisant
+    # manger un mouton
     def update_wolf_one_cell(self, i, j):
         wolf_=self.mat[i][j]
         if self.tour > wolf_.turn:
@@ -47,6 +49,8 @@ class Grid:
             wolf_.energie -= en.WOLF_ENERGY_LOSS_PER_TURN
             wolf_.turn +=1
 
+    # Fonction qui met à jour la position du mouton, soit en le déplaçant soit en le faisant
+    # manger de l'herbe
     def update_sheep_one_cell(self, i, j):
         sheep_=self.mat[i][j]
         if self.tour > sheep_.turn:
@@ -73,6 +77,7 @@ class Grid:
             sheep_.energie -=en.SHEEP_ENERGY_LOSS_PER_TURN
             sheep_.turn +=1
 
+    # Fonction qui met à jour tous les loups en faisant appel à la fonction update_wolf_one_cell
     def update_wolf(self):
         n = len(self.mat)
         for i in range(n):
@@ -80,6 +85,7 @@ class Grid:
                 if isinstance(self.mat[i][j], en.Wolf):
                     Grid.update_wolf_one_cell(self,i,j)
 
+    # Fonction qui met à jour tous les mouton en faisant appel à la fonction update_sheep_one_cell
     def update_sheep(self):
         n = len(self.mat)
         for i in range(n):
@@ -87,7 +93,7 @@ class Grid:
                 if isinstance(self.mat[i][j], en.Sheep):
                     Grid.update_sheep_one_cell(self, i,j)
         
-
+    # Fonction qui met à jour l'état de l'herbe en la regénérant et ajoute aléatoirement de l'herbe
     def update_grass(self):
         for i in range(len(self.grass)):
             for j in range(len(self.grass)) :
@@ -98,6 +104,7 @@ class Grid:
                     if np.random.uniform() <= en.GRASS_GROWTH_PROBABILITY :
                         self.grass[i][j] = en.Grass(i,j)
 
+    # Fonction qui tue les moutons et les loups
     def die(self):
         for i in range(len(self.mat)):
             for j in range(len(self.mat)) :
@@ -105,6 +112,8 @@ class Grid:
                     if self.mat[i][j].is_dead() :
                         self.mat[i][j] = 0
 
+    # Fonction qui fait apparaitre un nouveau mouton sur une case adjacente au mouton
+    # qui lui donne naissance
     def reproduct_sheep(self):
         sheep_coo=[]
         for i in range (len(self.mat)):
@@ -121,6 +130,8 @@ class Grid:
                     self.mat[nx][ny]=en.Sheep(nx,ny,0,en.SHEEP_INITIAL_ENERGY)
                     parents.energie -= en.REPRODUCTION_ENERGY_COST
 
+    # Fonction qui fait apparaitre un nouveau loup sur une case adjacente au loup qui
+    # lui donne naissance
     def reproduct_wolf(self):
         wolf_coo=[]
         for i in range (len(self.mat)):
@@ -137,6 +148,7 @@ class Grid:
                     self.mat[nx][ny]=en.Wolf(nx,ny,0,en.WOLF_INITIAL_ENERGY)
                     parents.energie -= en.REPRODUCTION_ENERGY_COST
 
+    # Fonction qui permet de compter l'age des animaux
     def update_age(self):
         n = len(self.mat)
         for i in range(n):
@@ -145,6 +157,7 @@ class Grid:
                     self.mat[i][j].age += 1
         return 0
     
+    # Fonction qui arrête la simulation si on est arrivé à la fin
     def end_simulation(g):
         """
         Docstring for end_simulation
@@ -193,6 +206,7 @@ def animaux_aleatoire(n):
         matrice_animaux[i][j] = en.Wolf(i,j,0, en.WOLF_INITIAL_ENERGY)
     return matrice_animaux
 
+# Fonction qui met à jour la grille
 def update(g):
     Grid.update_age(g)
     Grid.update_grass(g)
@@ -211,7 +225,5 @@ def init_grid(n):
     g.mat = mat_an
     g.grass = mat_he
     return g
-
-
 
 

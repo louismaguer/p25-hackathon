@@ -33,13 +33,16 @@ class Sheep :
         self.energie = energie
         self.turn = -1
     
+    # Fonction renvoyant un booléen pour savoir si le mouton meurt
     def is_dead(self):
         return self.energie <= 0 or self.age >= SHEEP_MAX_AGE
     
+    # Fonction renvoyant un booléen pour savoir si le mouton peut se reproduire
     def can_reprod(self):
         return self.energie >= SHEEP_REPRODUCTION_THRESHOLD
     
-    def move(self, i: int, j: int):
+    # Fonction qui met à jour la position du mouton
+    def move(self, i: float, j: float):
         self.position_x = i
         self.position_y = j
 
@@ -51,18 +54,22 @@ class Wolf :
         self.energie=energie
         self.turn = -1
     
+    # Fonction renvoyant un booléen pour savoir si le loup meurt
     def is_dead(self):
         return self.energie<=0 or self.age>=WOLF_MAX_AGE
     
-    def move(self, i: int, j: int):
+    # Fonction renvoyant un booléen pour savoir si le loup peut se reproduire
+    def move(self, i: float, j: float):
         self.position_x = i
         self.position_y = j   
 
-    def can_reprod(self):
+    # Fonction qui met à jour la position du loup
+    def can_reprod(self,grid):
         return self.energie>=WOLF_REPRODUCTION_THRESHOLD
 
 class Grass :
     def __init__(self, position_x: int, position_y: int, temps_repousse: int=0):
         self.position_x = position_x
         self.position_y = position_y
-        self.temps_repousse = temps_repousse # = 0 : l'herbe est vivante / = d (> 0) : l'herbe se régénère dans d cycles
+        self.temps_repousse = temps_repousse # = 0 : l'herbe est vivante /
+                                                  # = d (> 0) : l'herbe se régénère dans d cycles
