@@ -3,7 +3,7 @@ import entities as en
 
 class Grid:
     def __init__(self, n):
-        self.mat = [[0 for i in range(n)] for i in range(n)]
+        self.mat = [[None for i in range(n)] for i in range(n)]
 
     def list_adj(self, i, j):
         ans = []
@@ -17,5 +17,27 @@ class Grid:
         if (j + 1) < n:
             ans.append((i, j + 1))
         return ans
+    
+
+    def update_wolf(self, i, j):
+        pass
+
+    def update_sheep(self, i, j):
+        pass
+
+    def update_grass(self, i, j):
+        pass
+
+    def die(self):
+        pass
+
+    def reproduct_sheep(self):
+        pass
+
+    def reproduct_wolf(self):
+        pass
+
+    def update_age(self):
+        pass
 
 
