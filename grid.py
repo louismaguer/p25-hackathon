@@ -1,4 +1,5 @@
 import entities as en
+import numpy as np
 import random
 
 class Grid:
