@@ -1,18 +1,29 @@
-import grid as gr
-from tkinter import Tk, Canvas
-COLORS = ["khaki2", "ghost white", "green3", "gray26"]
-pixel = 10
+import matplotlib.pyplot as plt
+from matplotlib import colors
+import entities as en 
 
-def fill(matrice, canvas):
-    n=len(matrice)
-    for line in range(n):
-        for col in range(n):
-            fill_cell(canvas, matrice, line, col)
+def afficher_matrice(matrice_animaux, matrice_herbe, liste_couleurs):
+    nouvelle_matrice = conversion_état(matrice_animaux, matrice_herbe):
+    palette = colors.ListedColormap(liste_couleurs)
+    plt.imshow(nouvelle_matrice, cmap=palette)
+    plt.show()
 
-def fill_cell(canvas: Canvas, matrice, line, col) :
-    x1, y1 = col * pixel, line * pixel
-    x2, y2 = (col + 1) * pixel, (line + 1) * pixel
-    case = matrice[line][col]
-    color = COLORS[case]
-    canvas.create_rectangle(x1, y1, x2, y2, fill=color, outline='')
+def conversion_état(matrice_animaux, matrice_herbe):
+    matrice = [[0 for k in range(len(matrice_animaux[0]))] for i in range(len(matrice_animaux))]
+    for r in range(len(matrice_animaux[0])):
+        for c in range(len(matrice_animaux[0])):
+            if isinstance(matrice_animaux[r][c], en.Wolf) :
+                matrice[r][c] = 3
+            elif isinstance(matrice_animaux[r][c], en.Sheep) :
+                matrice[r][c] = 1
+    for r in range(len(matrice_herbe[0])):
+        for c in range(len(matrice_herbe[0])):
+            if isinstance(matrice_animaux[r][c], en.Grass) and matrice[r][c] = 0 :
+                if matrice_animaux[r][c].temps_repousse == 0 :
+                    matrice[r][c] = 2
+    return matrice
+
+
+
+mes_couleurs = ['almond', 'whitesmoke', 'green', 'black']
 
