@@ -40,12 +40,12 @@ class Grid:
     def update_grass(self):
         for i in range(len(self.mat)):
             for j in range(len(self.mat)) :
-                if self.mat[i,j] == 0 :
+                if self.mat[i][j] == 0 :
                     if np.random.uniform() <= en.GRASS_GROWTH_PROBABILITY :
-                        self.mat[i,j] = en.Grass(i,j)
-                if isinstance(self.mat[i,j], en.Grass) :
-                    if self.mat[i,j].self.temps_repousse > 0 :
-                        self.mat[i,j].self.temps_repousse -= 1
+                        self.mat[i][j] = en.Grass(i,j)
+                if isinstance(self.mat[i][j], en.Grass) :
+                    if self.mat[i][j].self.temps_repousse > 0 :
+                        self.mat[i][j].self.temps_repousse -= 1
 
     def die(self):
         pass
