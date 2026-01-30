@@ -32,4 +32,36 @@ mes_couleurs = ['khaki', 'whitesmoke', 'green', 'black']
 g = gr.Grid(9)
 g.mat[4][4] = en.Wolf(4,4, 8, 60)
 
+def main(n):
+    animals = []
+    herbs = []
+    g = gr.init_grid(n)
+    animals.append(g.mat)
+    herbs.append(g.grass)
+    while (gr.update(g) == 1):
+        animals.append(g.mat)
+        herbs.append(g.grass)
+    palette = colors.ListedColormap(liste_couleurs)
+    matrices = [conversion_etat(taba, tabb, mes_couleurs) for (taba, tabb) in zip(animals, herbs)]
+    i = 0
+    fig, ax = plt.subplots()
+    im = ax.imshow(matrices[i], cmap=palette)
+    ax.axis("off")
+    ax.set_title(f"Tour numéro {i}")
+
+    def on_key(event):
+        global i
+        if event.key == "right":
+            i = min(i + 1, len(matrices) - 1)
+        elif event.key == "left":
+            i = max(i - 1, 0)
+        else:
+            return
+        im.set_data(frames[i])
+        ax.set_title(f"Tour numéro {i}")
+        fig.canvas.draw_idle()
+
+    fig.canvas.mpl_connect("key_press_event", on_key)
+    plt.show()
+
 

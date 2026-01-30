@@ -29,7 +29,7 @@ class Grid:
     def update_wolf_one_cell(self, i, j):
         wolf_=self.mat[i][j]
         if self.tour > wolf_.turn:
-            adj=self.list_adj(self,i,j)
+            adj=Grid.list_adj(self,i,j)
             sheep_coos=[k for k in adj if isinstance(self.mat[k[0]][k[1]],en.Sheep)]
             if len(sheep_coos) > 0:
                 nx,ny=random.choice(sheep_coos)
@@ -53,7 +53,7 @@ class Grid:
     def update_sheep_one_cell(self, i, j):
         sheep_=self.mat[i][j]
         if self.tour > sheep_.turn:
-            adj=self.list_adj(i,j)
+            adj=Grid.list_adj(self,i,j)
             grass_coos=[k for k in adj if isinstance(self.grass[k[0]][k[1]],en.Grass)]
             if grass_coos:
                 nx,ny=random.choice(grass_coos)
@@ -223,5 +223,4 @@ def init_grid(n):
     g.mat = mat_an
     g.grass = mat_he
     return g
-
 
