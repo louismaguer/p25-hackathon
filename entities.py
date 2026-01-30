@@ -40,10 +40,6 @@ class Sheep :
             return Sheep('x adjacent', 'y adjacent', 0, SHEEP_INITIAL_ENERGY)
     
     def can_eat(self):
-        
-        
-
-        
 
 class Wolf :
     pass
