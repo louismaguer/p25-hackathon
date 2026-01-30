@@ -15,8 +15,8 @@ def conversion_etat(matrice_animaux, matrice_herbe):
                 matrice[r][c] = 1
     for r in range(len(matrice_herbe[0])):
         for c in range(len(matrice_herbe[0])):
-            if isinstance(matrice_animaux[r][c], en.Grass) and matrice[r][c] == 0 :
-                if matrice_animaux[r][c].temps_repousse == 0 :
+            if isinstance(matrice_herbe[r][c], en.Grass) and matrice[r][c] == 0 :
+                if matrice_herbe[r][c].temps_repousse == 0 :
                     matrice[r][c] = 2
     return matrice
 
@@ -29,8 +29,6 @@ def afficher_matrice(matrice_animaux, matrice_herbe, liste_couleurs):
 
 mes_couleurs = ['khaki', 'whitesmoke', 'green', 'black']
 
-g = gr.Grid(9)
-g.mat[4][4] = en.Wolf(4,4, 8, 60)
 
 def main(n):
     animals = []
