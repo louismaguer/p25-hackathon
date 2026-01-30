@@ -1,6 +1,7 @@
 import entities as en
 import numpy as np
 import random
+from random import sample
 
 
 class Grid:
@@ -163,16 +164,18 @@ class Grid:
             return 1
         return 0
     
-    def herbe_aleatoire(n):
-        case=[(line,col) for col in range(n) for line in range(n)]
-        proba_grass = 0.3
-        nb_grass=int(n**2*proba_grass)
-        grass=sample(case,nb_grass)
-        matrice_herbe=[[0]*n for _ in range(n)]
-        for (i,j) in grass :
-            matrice_herbe[i][j]=en.Grass(i,j)
-        return matrice_herbe
+# Fonction qui génère une matrice remplie d'herbe à la densité désirée, de manière aléatoire
+def herbe_aleatoire(n):
+    case=[(line,col) for col in range(n) for line in range(n)]
+    proba_grass = 0.3
+    nb_grass=int(n**2*proba_grass)
+    grass=sample(case,nb_grass)
+    matrice_herbe=[[0]*n for _ in range(n)]
+    for (i,j) in grass :
+        matrice_herbe[i][j]=en.Grass(i,j)
+    return matrice_herbe
 
+# Fonction qui génère une matrice remplie du nombre de loups et de moutons désiré, de manière aléatoire
 def animaux_aleatoire(n):
     matrice_animaux = [[0]*n for _ in range(n)]
     case=[(line,col) for col in range(n) for line in range(n)]
