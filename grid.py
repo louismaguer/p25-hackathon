@@ -56,11 +56,11 @@ class Grid:
             adj=Grid.list_adj(self,i,j)
             grass_coos=[k for k in adj if isinstance(self.grass[k[0]][k[1]],en.Grass)]
             wolf_coos=[k for k in adj if isinstance(self.mat[k[0]][k[1]],en.Wolf)]
-            if grass_coos:
-                p=[]
-                for (k,l) in grass_coos:
-                    if (k,l) not in wolf_coos:
-                        p.append((k,l))
+            p=[]
+            for (k,l) in grass_coos:
+                if (k,l) not in wolf_coos:
+                    p.append((k,l))
+            if p:
                 nx,ny=random.choice(p)
                 self.mat[i][j]=0
                 self.mat[nx][ny]=sheep_
