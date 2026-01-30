@@ -168,7 +168,7 @@ def update(g):
     Grid.update_age(g)
     Grid.update_grass(g)
     Grid.update_sheep(g)
-    Grid.update_grass(g)
+    Grid.update_wolf(g)
     Grid.die(g)
     Grid.reproduct_sheep(g)
     Grid.reproduct_wolf(g)
