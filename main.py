@@ -41,8 +41,8 @@ def main(n):
     while (gr.update(g) == 1):
         animals.append(g.mat)
         herbs.append(g.grass)
-    palette = colors.ListedColormap(liste_couleurs)
-    matrices = [conversion_etat(taba, tabb, mes_couleurs) for (taba, tabb) in zip(animals, herbs)]
+    palette = colors.ListedColormap(mes_couleurs)
+    matrices = [conversion_etat(taba, tabb) for (taba, tabb) in zip(animals, herbs)]
     i = 0
     fig, ax = plt.subplots()
     im = ax.imshow(matrices[i], cmap=palette)
@@ -57,11 +57,11 @@ def main(n):
             i = max(i - 1, 0)
         else:
             return
-        im.set_data(frames[i])
+        im.set_data(matrices[i])
         ax.set_title(f"Tour numéro {i}")
         fig.canvas.draw_idle()
 
     fig.canvas.mpl_connect("key_press_event", on_key)
     plt.show()
 
-
+main(en.GRID_SIZE)
