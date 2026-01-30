@@ -197,7 +197,12 @@ def update(g):
     return Grid.end_simulation(g)
 
 def init_grid(n):
-    pass
+    g = Grid(n)
+    mat_an = animaux_aleatoire(n)
+    mat_he = herbe_aleatoire(n)
+    g.mat = mat_an
+    g.grass = mat_he
+    return g
 
 
 
