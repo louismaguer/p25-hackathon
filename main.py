@@ -3,6 +3,7 @@ from matplotlib import colors
 import entities as en 
 import grid as gr
 import copy
+import numpy as np
 
 # Fonction qui permet de convertir les classes des animaux en entier pour simplifier la matrice
 # Cette fonction sert uniquement pour permettre l'affichage dans afficher_matrice
@@ -68,6 +69,11 @@ def main_0(n):
         fig.canvas.draw_idle()
 
     fig.canvas.mpl_connect("key_press_event", on_key)
+    plt.show()
+    x = np.arange(len(loups))
+    fig, ax = plt.subplots()
+    ax.plot(x, loups, color="red", label="Nombre de loup au fil du temps")
+    ax.plot(x, mouton, color="blue", label="Nombre de moutons au fil du temps")
     plt.show()
 
 def main():
