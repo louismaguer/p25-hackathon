@@ -1,6 +1,5 @@
 from random import sample
 import entities as en
-import random
 
 def herbe_aleatoire(n):
     case=[(line,col) for col in range(n) for line in range(n)]
@@ -9,7 +8,7 @@ def herbe_aleatoire(n):
     grass=sample(case,nb_grass)
     matrice_herbe=[[0]*n for _ in range(n)]
     for (i,j) in grass :
-        matrice_herbe[i][j]=1
+        matrice_herbe[i][j]=en.Grass(i,j)
     return matrice_herbe
 
 def animaux_aleatoire(n):
