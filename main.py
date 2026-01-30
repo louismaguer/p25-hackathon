@@ -31,7 +31,7 @@ def afficher_matrice(matrice_animaux, matrice_herbe, liste_couleurs):
 mes_couleurs = ['khaki', 'whitesmoke', 'green', 'black']
 
 
-def main(n):
+def main_0(n):
     animals = []
     herbs = []
     g = gr.init_grid(n)
@@ -64,4 +64,5 @@ def main(n):
     fig.canvas.mpl_connect("key_press_event", on_key)
     plt.show()
 
-main(en.GRID_SIZE)
+def main():
+    main_0(en.GRID_SIZE)

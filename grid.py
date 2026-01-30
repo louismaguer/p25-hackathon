@@ -173,6 +173,7 @@ class Grid:
         i = 0
         j = 0
         while (not any_animal) and i < n:
+            j = 0
             while (not any_animal) and j < n:
                 if isinstance(g.mat[i][j], en.Wolf) or isinstance(g.mat[i][j], en.Sheep):
                     any_animal =  True
