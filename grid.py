@@ -1,11 +1,12 @@
-import numpy as np
 import entities as en
+import numpy as np
 import random
 
 class Grid:
     def __init__(self, n):
         self.mat = [[0 for i in range(n)] for i in range(n)]
         self.grass = [[0 for i in range(n)] for i in range(n)]
+        self.tour = 0
 
     def list_adj(self, i, j):
         ans = []
@@ -43,16 +44,22 @@ class Grid:
     def update_sheep(self, i, j):
         pass
 
-    def update_grass(self, i, j):
-        for p in range(len(self.mat)):
-            for q in range(len(self.mat)) :
-                if self.mat[pq] == 0 :
+    def update_grass(self):
+        for i in range(len(self.mat)):
+            for j in range(len(self.mat)) :
+                if isinstance(self.mat[i][j], en.Grass) :
+                    if self.mat[i][j].self.temps_repousse > 0 :
+                        self.mat[i][j].self.temps_repousse -= 1
+                if self.mat[i][j] == 0 :
                     if np.random.uniform() <= en.GRASS_GROWTH_PROBABILITY :
-                        self.mat[p,q] = en.Grass()
-        pass
+                        self.mat[i][j] = en.Grass(i,j)
 
     def die(self):
-        pass
+        for i in range(len(self.mat)):
+            for j in range(len(self.mat)) :
+                if isinstance(self.mat[i][j], (en.Sheep, en.Wolf)) :
+                    if self.mat[i][j].isdead(self) :
+                        self.mat[i][j] = 0
 
     def reproduct_sheep(self):
         pass
@@ -80,5 +87,42 @@ class Grid:
                 if isinstance(self.mat[i][j], en.Wolf) or isinstance(self.mat[i][j], en.Sheep):
                     self.mat[i][j].age += 1
         return 0
+    
+    def end_simulation(g):
+        """
+        Docstring for end_simulation
+        
+        :param g: Grid
+
+        This function returns 1 if all ending conditions are met, 0 if not.
+        """
+        n = len(g.mat)
+        if g.tour >= en.MAX_TURNS:
+            return 1
+        any_animal = False
+        i = 0
+        j = 0
+        while (not any_animal) and i < n:
+            while (not any_animal) and j < n:
+                if isinstance(g.mat[i][j], en.Wolf) or isinstance(g.mat[i][j], en.Sheep):
+                    any_animal =  True
+        if not any_animal:
+            return 1
+        return 0
+
+        
+    
+
+
+def update(g):
+    Grid.update_age(g)
+    Grid.update_grass(g)
+    Grid.update_sheep(g)
+    Grid.update_grass(g)
+    Grid.die(g)
+    Grid.reproduct_sheep(g)
+    Grid.reproduct_wolf(g)
+    g.tour += 1
+    return Grid.end_simulation(g)
 
 
