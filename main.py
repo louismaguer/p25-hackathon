@@ -1,18 +1,25 @@
-import grid as gr
-from tkinter import Tk, Canvas
-COLORS = ["khaki2", "ghost white", "green3", "gray26"]
-pixel = 10
+import matplotlib.pyplot as plt
+from matplotlib import colors
 
-def fill(matrice, canvas):
-    n=len(matrice)
-    for line in range(n):
-        for col in range(n):
-            fill_cell(canvas, matrice, line, col)
+# --- TA FONCTION ---
+def afficher_matrice_facile(matrice, liste_couleurs):
+    palette = colors.ListedColormap(liste_couleurs)
+    plt.imshow(matrice, cmap=palette)
+    plt.show()
 
-def fill_cell(canvas: Canvas, matrice, line, col) :
-    x1, y1 = col * pixel, line * pixel
-    x2, y2 = (col + 1) * pixel, (line + 1) * pixel
-    case = matrice[line][col]
-    color = COLORS[case]
-    canvas.create_rectangle(x1, y1, x2, y2, fill=color, outline='')
+# --- TES DONNÉES ---
+# Une matrice 3x3 (comme dans ton premier essai)
+ma_grille = [
+    [0, 1, 2],
+    [2, 0, 1],
+    [1, 2, 0]
+]
 
+# On définit que : 0=Noir, 1=Gris, 2=Vert
+mes_couleurs = ['black', 'whitesmoke', 'green']
+
+# --- ON LANCE L'AFFICHAGE ---
+afficher_matrice_facile(ma_grille, mes_couleurs)
+
+def conversion_état(matrice_animaux, matrice_herbe):
+    
