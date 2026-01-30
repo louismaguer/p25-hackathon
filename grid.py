@@ -1,4 +1,3 @@
-import numpy as np
 import entities as en
 import random
 
