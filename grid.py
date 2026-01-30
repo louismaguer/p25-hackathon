@@ -38,6 +38,11 @@ class Grid:
         pass
 
     def update_age(self):
-        pass
+        n = len(self.mat)
+        for i in range(n):
+            for j in range(n):
+                if isinstance(self.mat[i][j], en.Wolf) or isinstance(self.mat[i][j], en.Sheep):
+                    self.mat[i][j].age += 1
+        return 0
 
 
