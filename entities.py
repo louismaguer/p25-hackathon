@@ -36,10 +36,11 @@ class Sheep :
         return self.energie <= 0 or self.age >= SHEEP_MAX_AGE
     
     def can_reprod(self):
-        if 'case adjacente de vide' and self.energie >= SHEEP_REPRODUCTION_THRESHOLD :
-            return Sheep('x adjacent', 'y adjacent', 0, SHEEP_INITIAL_ENERGY)
+        return self.energie >= SHEEP_REPRODUCTION_THRESHOLD :
     
-    def can_eat(self):''
+    def move(self, i: float, j: float):
+        self.position_x = i
+        self.position_y = j
 
 class Wolf :
     def _init_ (self, position_x: float,position_y:float,age:int,energie:int):
@@ -51,14 +52,12 @@ class Wolf :
     def is_dead(self):
         return self.energie<=0 or self.age>=WOLF_MAX_AGE
     
-    def move(self,grid):
-        list_adj = grid.list_adj(self.position_x, self.position_y)
+    def move(self, i: float, j: float):
+        self.position_x = i
+        self.position_y = j   
 
-    def can_eat(self,grid):
-        return #mouton a coté
     def can_reprod(self,grid):
-        if '''case adjacent libre''' and self.energie>=WOLF_REPRODUCTION_THRESHOLD:
-            return Wolf('nx','ny',0,WOLF_INITIAL_ENERGY)
+        return self.energie>=WOLF_REPRODUCTION_THRESHOLD:
 
 
     pass
