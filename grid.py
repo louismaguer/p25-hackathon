@@ -18,5 +18,15 @@ class Grid:
         if (j + 1) < n:
             ans.append((i, j + 1))
         return ans
+    
+    def update(self):
+        pass
 
+    def update_wolf(self, i, j):
+        pass
 
+    def update_sheep(self, i, j):
+        pass
+
+    def update_grass(self, i, j):
+        pass
