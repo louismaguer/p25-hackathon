@@ -74,14 +74,14 @@ class Grid:
         n = len(self.mat)
         for i in range(n):
             for j in range(n):
-                if isinstance(self.mat[i][j], en.Wolf)
+                if isinstance(self.mat[i][j], en.Wolf):
                     Grid.update_wolf_one_cell(self,i,j)
 
     def update_sheep(self):
         n = len(self.mat)
         for i in range(n):
             for j in range(n):
-                if isinstance(self.mat[i][j], en.Sheep)
+                if isinstance(self.mat[i][j], en.Sheep):
                     Grid.update_sheep_one_cell(self, i,j)
         
 
