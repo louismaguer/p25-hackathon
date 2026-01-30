@@ -44,7 +44,7 @@ class Sheep :
         self.position_y = j
 
 class Wolf :
-    def _init_ (self, position_x: float,position_y:float,age:int,energie:int):
+    def __init__ (self, position_x: float,position_y:float,age:int,energie:int):
         self.position_x=position_x
         self.position_y=position_y
         self.age=age
