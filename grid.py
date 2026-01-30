@@ -22,7 +22,7 @@ class Grid:
         return ans
     
 
-    def update_wolf(self, i, j):
+    def update_wolf_one_cell(self, i, j):
         wolf_=self.mat[i][j]
         if self.tour > wolf_.turn:
             adj=self.list_adj(self,i,j)
@@ -44,7 +44,7 @@ class Grid:
                     wolf_.move(nx,ny)
             wolf_.energie -= en.WOLF_ENERGY_LOSS_PER_TURN
 
-    def update_sheep(self, i, j):
+    def update_sheep_one_cell(self, i, j):
         sheep_=self.mat[i][j]
         if self.tour > sheep_.turn:
             adj=self.list_adj(self,i,j)
@@ -67,6 +67,19 @@ class Grid:
                             self.mat[nx][ny].turn = self.tour
                             sheep_.move(nx,ny)
             sheep_.energie -=en.SHEEP_ENERGY_LOSS_PER_TURN
+
+    def update_wolf(self):
+        n = len(self.mat)
+        for i in range(n):
+            for j in range(n):
+                Grid.update_wolf_one_cell(self,i,j)
+
+    def update_sheep(self):
+        n = len(self.mat)
+        for i in range(n):
+            for j in range(n):
+                Grid.update_wolf_one_cell(self, i,j)
+        
 
     def update_grass(self):
         for i in range(len(self.grass)):
