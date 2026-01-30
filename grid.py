@@ -1,4 +1,5 @@
 import entities as en
+import numpy as np
 import random
 
 class Grid:
@@ -36,16 +37,22 @@ class Grid:
     def update_sheep(self, i, j):
         pass
 
-    def update_grass(self, i, j):
-        for p in range(len(self.mat)):
-            for q in range(len(self.mat)) :
-                if self.mat[pq] == 0 :
+    def update_grass(self):
+        for i in range(len(self.mat)):
+            for j in range(len(self.mat)) :
+                if isinstance(self.mat[i][j], en.Grass) :
+                    if self.mat[i][j].self.temps_repousse > 0 :
+                        self.mat[i][j].self.temps_repousse -= 1
+                if self.mat[i][j] == 0 :
                     if np.random.uniform() <= en.GRASS_GROWTH_PROBABILITY :
-                        self.mat[p,q] = en.Grass()
-        pass
+                        self.mat[i][j] = en.Grass(i,j)
 
     def die(self):
-        pass
+        for i in range(len(self.mat)):
+            for j in range(len(self.mat)) :
+                if isinstance(self.mat[i][j], (en.Sheep, en.Wolf)) :
+                    if self.mat[i][j].isdead(self) :
+                        self.mat[i][j] = 0
 
     def reproduct_sheep(self):
         pass
