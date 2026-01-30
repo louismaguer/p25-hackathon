@@ -5,6 +5,7 @@ import random
 class Grid:
     def __init__(self, n):
         self.mat = [[0 for i in range(n)] for i in range(n)]
+        self.grass = [[0 for i in range(n)] for i in range(n)]
 
     def list_adj(self, i, j):
         ans = []
@@ -19,8 +20,6 @@ class Grid:
             ans.append((i, j + 1))
         return ans
     
-    def update(self):
-        pass
 
     def update_wolf(self, i, j):
         Wolf=self.mat[i][j]
@@ -38,4 +37,28 @@ class Grid:
         pass
 
     def update_grass(self, i, j):
+        for p in range(len(self.mat)):
+            for q in range(len(self.mat)) :
+                if self.mat[pq] == 0 :
+                    if np.random.uniform() <= en.GRASS_GROWTH_PROBABILITY :
+                        self.mat[p,q] = en.Grass()
         pass
+
+    def die(self):
+        pass
+
+    def reproduct_sheep(self):
+        pass
+
+    def reproduct_wolf(self):
+        pass
+
+    def update_age(self):
+        n = len(self.mat)
+        for i in range(n):
+            for j in range(n):
+                if isinstance(self.mat[i][j], en.Wolf) or isinstance(self.mat[i][j], en.Sheep):
+                    self.mat[i][j].age += 1
+        return 0
+
+
