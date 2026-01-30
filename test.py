@@ -29,5 +29,5 @@ def simuler_le_grid(mon_grid, nb_tours):
     plt.ioff()
     plt.show()
 
-    g =gr.init_grid(en.GRID_SIZE)
-    simuler_le_grid(g, en.MAX_TURNS)
+   # g =gr.init_grid(en.GRID_SIZE)
+    #simuler_le_grid(g, en.MAX_TURNS)
