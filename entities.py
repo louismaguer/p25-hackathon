@@ -36,7 +36,7 @@ class Sheep :
         return self.energie <= 0 or self.age >= SHEEP_MAX_AGE
     
     def can_reprod(self):
-        return self.energie >= SHEEP_REPRODUCTION_THRESHOLD :
+        return self.energie >= SHEEP_REPRODUCTION_THRESHOLD
     
     def move(self, i: float, j: float):
         self.position_x = i
@@ -57,7 +57,7 @@ class Wolf :
         self.position_y = j   
 
     def can_reprod(self,grid):
-        return self.energie>=WOLF_REPRODUCTION_THRESHOLD:
+        return self.energie>=WOLF_REPRODUCTION_THRESHOLD
 
 
     pass
