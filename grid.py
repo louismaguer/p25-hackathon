@@ -50,7 +50,7 @@ class Grid:
             self.mat[i][j]=0
             self.mat[nx][ny]=sheep_
             sheep_.move(nx,ny)
-            sheep_.energie += en.WOLF_ENERGY_FROM_SHEEP
+            sheep_.energie += en.SHEEP_ENERGY_FROM_GRASS
         else: 
             Vide=[k for k in adj if self.mat[k[0]][k[1]]==0]
             if Vide:
@@ -92,7 +92,7 @@ class Grid:
                 Vide=[v for v in A if self.mat[v[0]][v[1]]==0]
                 if Vide:
                     nx,ny=random.choice(Vide)
-                    self.mat[nx][ny]=en.Wolf(nx,ny,0,en.SHEEP_INITIAL_ENERGY)
+                    self.mat[nx][ny]=en.Sheep(nx,ny,0,en.SHEEP_INITIAL_ENERGY)
                     parents.energie -= en.REPRODUCTION_ENERGY_COST
 
     def reproduct_wolf(self):
