@@ -69,7 +69,21 @@ class Grid:
 
         This function returns 1 if all ending conditions are met, 0 if not.
         """
-        pass
+        n = len(g.mat)
+        if g.tour >= en.MAX_TURNS:
+            return 1
+        any_animal = False
+        i = 0
+        j = 0
+        while (not any_animal) and i < n:
+            while (not any_animal) and j < n:
+                if isinstance(g.mat[i][j], en.Wolf) or isinstance(g.mat[i][j], en.Sheep):
+                    any_animal =  True
+        if not any_animal:
+            return 1
+        return 0
+
+        
     
 
 
@@ -81,4 +95,7 @@ def update(g):
     Grid.die(g)
     Grid.reproduct_sheep(g)
     Grid.reproduct_wolf(g)
+    g.tour += 1
+    return Grid.end_simulation(g)
+
 
