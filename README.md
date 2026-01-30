@@ -1,4 +1,4 @@
-Il suffit d'exécuter le fichier et d'appuyer sur les flèches du clavier pour faire avancer le nombre de tours.
+Il suffit d'exécuter le fichier  et d'appuyer sur les flèches du clavier pour faire avancer le nombre de tours.
 
 On peut faire varier les différents paramètres dans le fichier *entities*.
 
