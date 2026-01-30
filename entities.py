@@ -42,7 +42,7 @@ class Sheep :
         return self.energie >= SHEEP_REPRODUCTION_THRESHOLD
     
     # Fonction qui met à jour la position du mouton
-    def move(self, i: float, j: float):
+    def move(self, i: int, j: int):
         self.position_x = i
         self.position_y = j
 
@@ -59,12 +59,12 @@ class Wolf :
         return self.energie<=0 or self.age>=WOLF_MAX_AGE
     
     # Fonction renvoyant un booléen pour savoir si le loup peut se reproduire
-    def move(self, i: float, j: float):
+    def move(self, i: int, j: int):
         self.position_x = i
         self.position_y = j   
 
     # Fonction qui met à jour la position du loup
-    def can_reprod(self,grid):
+    def can_reprod(self):
         return self.energie>=WOLF_REPRODUCTION_THRESHOLD
 
 class Grass :
