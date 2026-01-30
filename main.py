@@ -46,7 +46,7 @@ def main_0(n):
     fig, ax = plt.subplots()
     im = ax.imshow(matrices[i], cmap=palette)
     ax.axis("off")
-    ax.set_title(f"Tour numéro {i}")
+    ax.set_title(f"Tour numéro {i + 1}")
 
     def on_key(event):
         print("KEY:", event.key)
@@ -58,7 +58,7 @@ def main_0(n):
         else:
             return
         im.set_data(matrices[i])
-        ax.set_title(f"Tour numéro {i}")
+        ax.set_title(f"Tour numéro {i + 1}")
         fig.canvas.draw_idle()
 
     fig.canvas.mpl_connect("key_press_event", on_key)
