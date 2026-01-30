@@ -47,7 +47,6 @@ class Grid:
                     self.mat[nx][ny].turn = self.tour
                     wolf_.move(nx,ny)
             wolf_.energie -= en.WOLF_ENERGY_LOSS_PER_TURN
-            wolf_.turn +=1
 
     # Fonction qui met à jour la position du mouton, soit en le déplaçant soit en le faisant
     # manger de l'herbe
@@ -75,7 +74,6 @@ class Grid:
                             self.mat[nx][ny].turn = self.tour
                             sheep_.move(nx,ny)
             sheep_.energie -=en.SHEEP_ENERGY_LOSS_PER_TURN
-            sheep_.turn +=1
 
     # Fonction qui met à jour tous les loups en faisant appel à la fonction update_wolf_one_cell
     def update_wolf(self):

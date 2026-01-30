@@ -72,3 +72,6 @@ def main_0(n):
 
 def main():
     main_0(en.GRID_SIZE)
+
+if __name__ == "__main__":
+    main()
