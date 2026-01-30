@@ -74,7 +74,7 @@ def main_0(n):
     fig, ax = plt.subplots()
     ax.plot(x, loups, color="red", label="Nombre de loup au fil du temps")
     ax.plot(x, mouton, color="blue", label="Nombre de moutons au fil du temps")
-    plt.legend()
+    plt.legend(loc="upper right")
     plt.show()
 
 def main():
