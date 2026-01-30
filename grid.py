@@ -56,8 +56,9 @@ class Grid:
                 self.mat[i][j]=0
                 self.mat[nx][ny]=sheep_
                 self.mat[nx][ny].turn = self.tour
+                self.grass[nx][ny].temps_repousse=en.GRASS_REGROWTH_TIME
                 sheep_.move(nx,ny)
-                sheep_.energie += en.WOLF_ENERGY_FROM_SHEEP
+                sheep_.energie += en.SHEEP_ENERGY_FROM_GRASS
             else: 
                 Vide=[k for k in adj if self.mat[k[0]][k[1]]==0]
                 if Vide:
