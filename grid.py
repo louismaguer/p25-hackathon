@@ -31,12 +31,13 @@ class Grid:
     def die(self):
         pass
 
-    def reproduct_sheep(self)
+    def reproduct_sheep(self):
         pass
 
     def reproduct_wolf(self):
         pass
 
+    def update_age(self):
+        pass
 
-def update(g):
-    pass
+
