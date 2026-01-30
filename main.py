@@ -48,7 +48,7 @@ def main(n):
     ax.set_title(f"Tour numéro {i}")
 
     def on_key(event):
-        global i
+        nonlocal i
         if event.key == "right":
             i = min(i + 1, len(matrices) - 1)
         elif event.key == "left":
