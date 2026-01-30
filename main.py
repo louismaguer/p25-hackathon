@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from matplotlib import colors
 import entities as en 
 import grid as gr
+import copy
 
 # Fonction qui permet de convertir les classes des animaux en entier pour simplifier la matrice
 # Cette fonction sert uniquement pour permettre l'affichage dans afficher_matrice
@@ -34,11 +35,11 @@ def main(n):
     animals = []
     herbs = []
     g = gr.init_grid(n)
-    animals.append(g.mat)
-    herbs.append(g.grass)
-    while (gr.update(g) == 1):
-        animals.append(g.mat)
-        herbs.append(g.grass)
+    animals.append(copy.deepcopy(g.mat))
+    herbs.append(copy.deepcopy(g.grass))
+    while not (gr.update(g) == 1):
+        animals.append(copy.deepcopy(g.mat))
+        herbs.append(copy.deepcopy(g.grass))
     palette = colors.ListedColormap(mes_couleurs)
     matrices = [conversion_etat(taba, tabb) for (taba, tabb) in zip(animals, herbs)]
     i = 0
@@ -48,6 +49,7 @@ def main(n):
     ax.set_title(f"Tour numéro {i}")
 
     def on_key(event):
+        print("KEY:", event.key)
         nonlocal i
         if event.key == "right":
             i = min(i + 1, len(matrices) - 1)
