@@ -1,12 +1,8 @@
 import matplotlib.pyplot as plt
 from matplotlib import colors
 import entities as en 
+import grid as gr
 
-def afficher_matrice(matrice_animaux, matrice_herbe, liste_couleurs):
-    nouvelle_matrice = conversion_etat(matrice_animaux, matrice_herbe)
-    palette = colors.ListedColormap(liste_couleurs)
-    plt.imshow(nouvelle_matrice, cmap=palette)
-    plt.show()
 
 def conversion_etat(matrice_animaux, matrice_herbe):
     matrice = [[0 for k in range(len(matrice_animaux[0]))] for i in range(len(matrice_animaux))]
@@ -22,4 +18,14 @@ def conversion_etat(matrice_animaux, matrice_herbe):
                 if matrice_animaux[r][c].temps_repousse == 0 :
                     matrice[r][c] = 2
     return matrice
+
+def afficher_matrice(matrice_animaux, matrice_herbe, liste_couleurs):
+    nouvelle_matrice = conversion_etat(matrice_animaux, matrice_herbe)
+    palette = colors.ListedColormap(liste_couleurs)
+    plt.imshow(nouvelle_matrice, cmap=palette)
+    plt.show()
+
+mes_couleurs = ['almond', 'whitesmoke', 'green', 'black']
+
+g = gr.Grid(9)
 
