@@ -1,6 +1,8 @@
 import entities as en
 import numpy as np
 import random
+from random import sample
+
 
 class Grid:
     def __init__(self, n):
@@ -73,13 +75,15 @@ class Grid:
         n = len(self.mat)
         for i in range(n):
             for j in range(n):
-                Grid.update_wolf_one_cell(self,i,j)
+                if isinstance(self.mat[i][j], en.Wolf)
+                    Grid.update_wolf_one_cell(self,i,j)
 
     def update_sheep(self):
         n = len(self.mat)
         for i in range(n):
             for j in range(n):
-                Grid.update_sheep_one_cell(self, i,j)
+                if isinstance(self.mat[i][j], en.Sheep)
+                    Grid.update_sheep_one_cell(self, i,j)
         
 
     def update_grass(self):
@@ -162,8 +166,30 @@ class Grid:
         if not any_animal:
             return 1
         return 0
+    
+# Fonction qui génère une matrice remplie d'herbe à la densité désirée, de manière aléatoire
+def herbe_aleatoire(n):
+    case=[(line,col) for col in range(n) for line in range(n)]
+    proba_grass = 0.3
+    nb_grass=int(n**2*proba_grass)
+    grass=sample(case,nb_grass)
+    matrice_herbe=[[0]*n for _ in range(n)]
+    for (i,j) in grass :
+        matrice_herbe[i][j]=en.Grass(i,j)
+    return matrice_herbe
 
-
+# Fonction qui génère une matrice remplie du nombre de loups et de moutons désiré, de manière aléatoire
+def animaux_aleatoire(n):
+    matrice_animaux = [[0]*n for _ in range(n)]
+    case=[(line,col) for col in range(n) for line in range(n)]
+    nb_sheep = 50
+    nb_wolf = 10 
+    echantillon = sample(case, nb_sheep + nb_wolf)
+    for (i,j) in echantillon[:50] :
+        matrice_animaux[i][j] = en.Sheep(i,j,0, en.SHEEP_INITIAL_ENERGY)
+    for (i,j) in echantillon[50:] :
+        matrice_animaux[i][j] = en.Wolf(i,j,0, en.WOLF_INITIAL_ENERGY)
+    return matrice_animaux
 
 def update(g):
     Grid.update_age(g)
@@ -175,5 +201,15 @@ def update(g):
     Grid.reproduct_wolf(g)
     g.tour += 1
     return Grid.end_simulation(g)
+
+def init_grid(n):
+    g = Grid(n)
+    mat_an = animaux_aleatoire(n)
+    mat_he = herbe_aleatoire(n)
+    g.mat = mat_an
+    g.grass = mat_he
+    return g
+
+
 
 
