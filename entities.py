@@ -59,8 +59,8 @@ class Wolf :
     def can_reprod(self,grid):
         return self.energie>=WOLF_REPRODUCTION_THRESHOLD
 
-
-    pass
-
 class Grass :
-    pass
+    def _init_(self, position_x: float, position_y: float, temps_repousse: int=0):
+        self.position_x = position_x
+        self.position_y = position_y
+        self.temps_repousse= temps_repousse
