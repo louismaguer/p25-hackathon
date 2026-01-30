@@ -54,7 +54,7 @@ def main_0(n):
     fig, ax = plt.subplots()
     im = ax.imshow(matrices[i], cmap=palette)
     ax.axis("off")
-    ax.set_title(f"Tour numéro {i + 1} \n Moutons : {mouton[i]}  Loups : {loups[i]}  Herbe : {herbe[i]}" )
+    ax.set_title(f"Tour numéro {i + 1} \n Moutons : {mouton[i]}  Loups : {loups[i]}" )
 
     def on_key(event):
         print("KEY:", event.key)
