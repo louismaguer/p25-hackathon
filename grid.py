@@ -3,7 +3,8 @@ import entities as en
 
 class Grid:
     def __init__(self, n):
-        self.mat = [[None for i in range(n)] for i in range(n)]
+        self.mat = [[0 for i in range(n)] for i in range(n)]
+        self.grass = [[0 for i in range(n)] for i in range(n)]
 
     def list_adj(self, i, j):
         ans = []
@@ -28,4 +29,8 @@ class Grid:
         pass
 
     def update_grass(self, i, j):
-        pass
+        for p in range(len(self.mat)):
+            for q in range(len(self.mat)) :
+                if self.mat[pq] == 0 :
+                    if np.random.uniform() <= en.GRASS_GROWTH_PROBABILITY :
+                        self.mat[p,q] = en.Grass()
