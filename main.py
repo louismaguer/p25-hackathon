@@ -26,7 +26,7 @@ def afficher_matrice(matrice_animaux, matrice_herbe, liste_couleurs):
     nouvelle_matrice = conversion_etat(matrice_animaux, matrice_herbe)
     palette = colors.ListedColormap(liste_couleurs)
     plt.imshow(nouvelle_matrice, cmap=palette)
-    plt.show()
+    #plt.show()
 
 mes_couleurs = ['khaki', 'whitesmoke', 'green', 'black']
 
