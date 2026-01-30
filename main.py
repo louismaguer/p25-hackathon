@@ -25,7 +25,8 @@ def afficher_matrice(matrice_animaux, matrice_herbe, liste_couleurs):
     plt.imshow(nouvelle_matrice, cmap=palette)
     plt.show()
 
-mes_couleurs = ['almond', 'whitesmoke', 'green', 'black']
+mes_couleurs = ['khaki', 'whitesmoke', 'green', 'black']
 
 g = gr.Grid(9)
+g.mat[4, 4] = en.Wolf(4,4, 8, 60)
 
