@@ -26,12 +26,12 @@ GRASS_REGROWTH_TIME = 7
 MAX_TURNS = 500 # Nombre maximum de tours
 
 class Sheep :
-    def _init_(self, position_x: float, position_y: float, age: int, energie:int, turn:int):
+    def _init_(self, position_x: float, position_y: float, age: int, energie:int):
         self.position_x = position_x
         self.position_y = position_y
         self.age = age
         self.energie = energie
-        self.turn = turn
+        self.turn = -1
     
     def is_dead(self):
         return self.energie <= 0 or self.age >= SHEEP_MAX_AGE
@@ -44,12 +44,12 @@ class Sheep :
         self.position_y = j
 
 class Wolf :
-    def _init_ (self, position_x: float,position_y:float,age:int,energie:int, turn:int):
+    def _init_ (self, position_x: float,position_y:float,age:int,energie:int):
         self.position_x=position_x
         self.position_y=position_y
         self.age=age
         self.energie=energie
-        self.turn = turn
+        self.turn = -1
     
     def is_dead(self):
         return self.energie<=0 or self.age>=WOLF_MAX_AGE

@@ -8,7 +8,7 @@ def afficher_matrice(matrice_animaux, matrice_herbe, liste_couleurs):
     plt.imshow(nouvelle_matrice, cmap=palette)
     plt.show()
 
-def conversion_état(matrice_animaux, matrice_herbe):
+def conversion_etat(matrice_animaux, matrice_herbe):
     matrice = [[0 for k in range(len(matrice_animaux[0]))] for i in range(len(matrice_animaux))]
     for r in range(len(matrice_animaux[0])):
         for c in range(len(matrice_animaux[0])):

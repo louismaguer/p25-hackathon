@@ -24,43 +24,49 @@ class Grid:
 
     def update_wolf(self, i, j):
         wolf_=self.mat[i][j]
-        adj=self.list_adj(self,i,j)
-        sheep_coos=[k for k in adj if isinstance(self.mat[k[0]][k[1]],en.Sheep)]
-        if sheep_coos:
-            nx,ny=random.choice(sheep_coos)
-            self.mat[i][j]=0
-            self.mat[nx][ny]=wolf_
-            wolf_.move(nx,ny)
-            wolf_.energie += en.WOLF_ENERGY_FROM_SHEEP
-        else: 
-            Vide=[k for k in adj if self.mat[k[0]][k[1]]==0]
-            if Vide: 
-                nx,ny=random.choice(Vide)
+        if self.tour > wolf_.turn:
+            adj=self.list_adj(self,i,j)
+            sheep_coos=[k for k in adj if isinstance(self.mat[k[0]][k[1]],en.Sheep)]
+            if len(sheep_coos) > 0:
+                nx,ny=random.choice(sheep_coos)
                 self.mat[i][j]=0
                 self.mat[nx][ny]=wolf_
+                self.mat[nx][ny].turn = self.tour
                 wolf_.move(nx,ny)
-        wolf_.energie -=en.WOLF_ENERGY_LOSS_PER_TURN
+                wolf_.energie += en.WOLF_ENERGY_FROM_SHEEP
+            else: 
+                Vide=[k for k in adj if self.mat[k[0]][k[1]]==0]
+                if len(Vide) > 0: 
+                    nx,ny=random.choice(Vide)
+                    self.mat[i][j]=0
+                    self.mat[nx][ny]=wolf_
+                    self.mat[nx][ny].turn = self.tour
+                    wolf_.move(nx,ny)
+            wolf_.energie -= en.WOLF_ENERGY_LOSS_PER_TURN
 
     def update_sheep(self, i, j):
         sheep_=self.mat[i][j]
-        adj=self.list_adj(self,i,j)
-        grass_coos=[k for k in adj if isinstance(self.grass[k[0]][k[1]],en.Grass)]
-        if grass_coos:
-            nx,ny=random.choice(grass_coos)
-            self.mat[i][j]=0
-            self.mat[nx][ny]=sheep_
-            sheep_.move(nx,ny)
-            sheep_.energie += en.SHEEP_ENERGY_FROM_GRASS
-        else: 
-            Vide=[k for k in adj if self.mat[k[0]][k[1]]==0]
-            if Vide:
-                for v in Vide: 
-                    if v not in grass_coos:
-                        nx,ny=random.choice(Vide)
-                        self.mat[i][j]=0
-                        self.mat[nx][ny]=sheep_
-                        sheep_.move(nx,ny)
-        sheep_.energie -=en.SHEEP_ENERGY_LOSS_PER_TURN
+        if self.tour > sheep_.turn:
+            adj=self.list_adj(self,i,j)
+            grass_coos=[k for k in adj if isinstance(self.grass[k[0]][k[1]],en.Grass)]
+            if grass_coos:
+                nx,ny=random.choice(grass_coos)
+                self.mat[i][j]=0
+                self.mat[nx][ny]=sheep_
+                self.mat[nx][ny].turn = self.tour
+                sheep_.move(nx,ny)
+                sheep_.energie += en.WOLF_ENERGY_FROM_SHEEP
+            else: 
+                Vide=[k for k in adj if self.mat[k[0]][k[1]]==0]
+                if Vide:
+                    for v in Vide: 
+                        if v not in grass_coos:
+                            nx,ny=random.choice(Vide)
+                            self.mat[i][j]=0
+                            self.mat[nx][ny]=sheep_
+                            self.mat[nx][ny].turn = self.tour
+                            sheep_.move(nx,ny)
+            sheep_.energie -=en.SHEEP_ENERGY_LOSS_PER_TURN
 
     def update_grass(self):
         for i in range(len(self.grass)):
@@ -92,7 +98,7 @@ class Grid:
                 Vide=[v for v in A if self.mat[v[0]][v[1]]==0]
                 if Vide:
                     nx,ny=random.choice(Vide)
-                    self.mat[nx][ny]=en.Sheep(nx,ny,0,en.SHEEP_INITIAL_ENERGY)
+                    self.mat[nx][ny]=en.Wolf(nx,ny,0,en.SHEEP_INITIAL_ENERGY)
                     parents.energie -= en.REPRODUCTION_ENERGY_COST
 
     def reproduct_wolf(self):
