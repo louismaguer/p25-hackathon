@@ -48,7 +48,11 @@ class Grid:
                         self.mat[i][j] = en.Grass(i,j)
 
     def die(self):
-        pass
+        for i in range(len(self.mat)):
+            for j in range(len(self.mat)) :
+                if isinstance(self.mat[i][j], (en.Sheep, en.Wolf)) :
+                    if self.mat[i][j].isdead(self) :
+                        self.mat[i][j] = 0
 
     def reproduct_sheep(self):
         pass
