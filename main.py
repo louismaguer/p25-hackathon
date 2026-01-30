@@ -3,7 +3,8 @@ from matplotlib import colors
 import entities as en 
 import grid as gr
 
-
+# Fonction qui permet de convertir les classes des animaux en entier pour simplifier la matrice
+# Cette fonction sert uniquement pour permettre l'affichage dans afficher_matrice
 def conversion_etat(matrice_animaux, matrice_herbe):
     matrice = [[0 for k in range(len(matrice_animaux[0]))] for i in range(len(matrice_animaux))]
     for r in range(len(matrice_animaux[0])):
@@ -19,6 +20,7 @@ def conversion_etat(matrice_animaux, matrice_herbe):
                     matrice[r][c] = 2
     return matrice
 
+# Fonction qui permet d'afficher la matrice avec des couleurs
 def afficher_matrice(matrice_animaux, matrice_herbe, liste_couleurs):
     nouvelle_matrice = conversion_etat(matrice_animaux, matrice_herbe)
     palette = colors.ListedColormap(liste_couleurs)
