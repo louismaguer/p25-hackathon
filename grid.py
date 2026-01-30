@@ -205,6 +205,16 @@ class Grid:
                 if isinstance(self.mat[r][c], en.Sheep) :
                     M += 1
         return M
+    
+    # Fonction qui compte le nombre d'herbe
+    def compte_herbe(self):
+        n=len(self.grass)
+        M = 0
+        for r in range(n):
+            for c in range(n):
+                if isinstance(self.grass[r][c], en.Grass) :
+                    M += 1
+        return M
 
 # Fonction qui génère une matrice remplie d'herbe à la densité désirée, de manière aléatoire
 def herbe_aleatoire(n):
