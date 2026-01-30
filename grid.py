@@ -42,7 +42,25 @@ class Grid:
         wolf_.energie -=en.WOLF_ENERGY_LOSS_PER_TURN
 
     def update_sheep(self, i, j):
-        pass
+        sheep_=self.mat[i][j]
+        adj=self.list_adj(self,i,j)
+        grass_coos=[k for k in adj if isinstance(self.grass[k[0]][k[1]],en.Grass)]
+        if grass_coos:
+            nx,ny=random.choice(grass_coos)
+            self.mat[i][j]=0
+            self.mat[nx][ny]=sheep_
+            sheep_.move(nx,ny)
+            sheep_.energie += en.WOLF_ENERGY_FROM_SHEEP
+        else: 
+            Vide=[k for k in adj if self.mat[k[0]][k[1]]==0]
+            if Vide:
+                for v in Vide: 
+                    if v not in grass_coos:
+                        nx,ny=random.choice(Vide)
+                        self.mat[i][j]=0
+                        self.mat[nx][ny]=sheep_
+                        sheep_.move(nx,ny)
+        sheep_.energie -=en.SHEEP_ENERGY_LOSS_PER_TURN
 
     def update_grass(self):
         for i in range(len(self.mat)):
@@ -62,7 +80,20 @@ class Grid:
                         self.mat[i][j] = 0
 
     def reproduct_sheep(self):
-        pass
+        sheep_coo=[]
+        for i in range (len(self.mat)):
+            for j in range (len(self.mat)):
+                if isinstance(self.mat[i][j],en.Sheep):
+                    sheep_coo.append((i,j))
+        for (k,l) in sheep_coo:
+            parents=self.mat[k][l]
+            if parents.can_reprod():
+                A=self.list_adj(k,l)
+                Vide=[v for v in A if self.mat[v[0]][v[1]]==0]
+                if Vide:
+                    nx,ny=random.choice(Vide)
+                    self.mat[nx][ny]=en.Wolf(nx,ny,0,en.SHEEP_INITIAL_ENERGY)
+                    parents.energie -= en.REPRODUCTION_ENERGY_COST
 
     def reproduct_wolf(self):
         wolf_coo=[]
