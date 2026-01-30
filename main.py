@@ -34,19 +34,25 @@ mes_couleurs = ['khaki', 'whitesmoke', 'green', 'black']
 def main_0(n):
     animals = []
     herbs = []
+    loups = []
+    mouton = []
     g = gr.init_grid(n)
     animals.append(copy.deepcopy(g.mat))
     herbs.append(copy.deepcopy(g.grass))
+    loups.append(gr.Grid.compte_loups(g))
+    mouton.append(gr.Grid.compte_mouton(g))
     while not (gr.update(g) == 1):
         animals.append(copy.deepcopy(g.mat))
         herbs.append(copy.deepcopy(g.grass))
+        loups.append(gr.Grid.compte_loups(g))
+        mouton.append(gr.Grid.compte_mouton(g))
     palette = colors.ListedColormap(mes_couleurs)
     matrices = [conversion_etat(taba, tabb) for (taba, tabb) in zip(animals, herbs)]
     i = 0
     fig, ax = plt.subplots()
     im = ax.imshow(matrices[i], cmap=palette)
     ax.axis("off")
-    ax.set_title(f"Tour numéro {i + 1}")
+    ax.set_title(f"Tour numéro {i + 1} \n Moutons : {mouton[i]}  Loups : {loups[i]}" )
 
     def on_key(event):
         print("KEY:", event.key)
@@ -58,7 +64,7 @@ def main_0(n):
         else:
             return
         im.set_data(matrices[i])
-        ax.set_title(f"Tour numéro {i + 1}")
+        ax.set_title(f"Tour numéro {i + 1} \n Moutons : {mouton[i]}  Loups : {loups[i]}" )
         fig.canvas.draw_idle()
 
     fig.canvas.mpl_connect("key_press_event", on_key)

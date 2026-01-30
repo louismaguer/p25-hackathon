@@ -183,11 +183,26 @@ class Grid:
             return 1
         return 0
     
+    # Fonction qui compte le nombre de loup
     def compte_loups(self):
-        pass
+        n=len(self.mat)
+        L = 0
+        for r in range(n):
+            for c in range(n):
+                if isinstance(g.mat[r][c], en.Wolf) :
+                    L += 1
+        return L
+
+    # Fonction qui compte le nombre de mouton
     def compte_mouton(self):
-        pass
-    
+        n=len(self.mat)
+        M = 0
+        for r in range(n):
+            for c in range(n):
+                if isinstance(g.mat[r][c], en.Sheep) :
+                    M += 1
+        return M
+
 # Fonction qui génère une matrice remplie d'herbe à la densité désirée, de manière aléatoire
 def herbe_aleatoire(n):
     case=[(line,col) for col in range(n) for line in range(n)]
