@@ -2,6 +2,7 @@ import entities as en
 import numpy as np
 import random
 
+
 class Grid:
     def __init__(self, n):
         self.mat = [[0 for i in range(n)] for i in range(n)]
@@ -174,5 +175,9 @@ def update(g):
     Grid.reproduct_wolf(g)
     g.tour += 1
     return Grid.end_simulation(g)
+
+def init_grid(n):
+    pass
+
 
 
