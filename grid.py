@@ -1,4 +1,3 @@
-import numpy as np
 import entities as en
 import random
 
@@ -6,6 +5,7 @@ class Grid:
     def __init__(self, n):
         self.mat = [[0 for i in range(n)] for i in range(n)]
         self.grass = [[0 for i in range(n)] for i in range(n)]
+        self.tour = 0
 
     def list_adj(self, i, j):
         ans = []
@@ -62,5 +62,25 @@ class Grid:
                 if isinstance(self.mat[i][j], en.Wolf) or isinstance(self.mat[i][j], en.Sheep):
                     self.mat[i][j].age += 1
         return 0
+    
+    def end_simulation(g):
+        """
+        Docstring for end_simulation
+        
+        :param g: Grid
 
+        This function returns 1 if all ending conditions are met, 0 if not.
+        """
+        pass
+    
+
+
+def update(g):
+    Grid.update_age(g)
+    Grid.update_grass(g)
+    Grid.update_sheep(g)
+    Grid.update_grass(g)
+    Grid.die(g)
+    Grid.reproduct_sheep(g)
+    Grid.reproduct_wolf(g)
 
