@@ -3,7 +3,7 @@ from matplotlib import colors
 import entities as en 
 
 def afficher_matrice(matrice_animaux, matrice_herbe, liste_couleurs):
-    nouvelle_matrice = conversion_état(matrice_animaux, matrice_herbe)
+    nouvelle_matrice = conversion_etat(matrice_animaux, matrice_herbe)
     palette = colors.ListedColormap(liste_couleurs)
     plt.imshow(nouvelle_matrice, cmap=palette)
     plt.show()
@@ -22,8 +22,4 @@ def conversion_etat(matrice_animaux, matrice_herbe):
                 if matrice_animaux[r][c].temps_repousse == 0 :
                     matrice[r][c] = 2
     return matrice
-
-
-
-mes_couleurs = ['almond', 'whitesmoke', 'green', 'black']
 
