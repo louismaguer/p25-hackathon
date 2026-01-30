@@ -18,8 +18,6 @@ class Grid:
             ans.append((i, j + 1))
         return ans
     
-    def update(self):
-        pass
 
     def update_wolf(self, i, j):
         pass
@@ -29,3 +27,16 @@ class Grid:
 
     def update_grass(self, i, j):
         pass
+
+    def die(self):
+        pass
+
+    def reproduct_sheep(self)
+        pass
+
+    def reproduct_wolf(self):
+        pass
+
+
+def update(g):
+    pass
