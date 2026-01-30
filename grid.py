@@ -211,5 +211,3 @@ def init_grid(n):
     return g
 
 
-
-
